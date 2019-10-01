@@ -14,7 +14,6 @@ origX = np.linspace(min(x), max(x), 1000)
 origY = (origX + 3 * np.cos(origX) ** 2) ** 0.5 - 0.2 * origX
 
 def Newton ( crdsX, crdsY, x ):
-
 	res = 0
 	for i in range(1, len(crdsX)):
 		mult = 1.0
