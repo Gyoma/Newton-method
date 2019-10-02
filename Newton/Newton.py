@@ -23,15 +23,8 @@ def CreateData ( crdsX, crdsY ):
 			startX = crdsX[indexes[0]]
 			endX = crdsX[indexes[-1]]
 			lngth = len(indexes)
-			
-			val1 = (data.loc[indexes[-1] - 1, lngth - 1] 
-					if (data.shape[1] >= lngth and data.loc[indexes[-1] - 1][lngth - 1] is not None)
-					else Create(crdsX, indexes[:-1]))
-			
-			val2 = (data.loc[indexes[-1], lngth - 1]
-					if (data.shape[1] >= lngth and data.loc[indexes[-1], lngth - 1] is not None)
-					else Create(crdsX, indexes[1:]))
-			
+			val1 = Create(crdsX, indexes[:-1])
+			val2 = Create(crdsX, indexes[1:])
 			val = (val2 - val1) / (endX - startX)
 		
 			if lngth not in data.columns:
@@ -56,15 +49,8 @@ def CreateErrData ( crdsX ):
 			startX = crdsX[indexes[0]]
 			endX = crdsX[indexes[-1]]
 			lngth = len(indexes)
-			
-			val1 = (errdata.loc[indexes[-1] - 1, lngth - 1] 
-					if (errdata.shape[1] >= lngth and errdata.loc[indexes[-1] - 1, lngth - 1] is not None)
-					else Create(crdsX, indexes[:-1]))
-			
-			val2 = (errdata.loc[indexes[-1], lngth - 1] 
-					if (errdata.shape[1] >= lngth and errdata.loc[indexes[-1], lngth - 1] is not None)
-					else Create(crdsX, indexes[1:]))
-			
+			val1 = Create(crdsX, indexes[:-1])			
+			val2 = Create(crdsX, indexes[1:])
 			val = (val2 + val1) / abs(endX - startX)
 		
 			if lngth not in errdata.columns:
